@@ -3,10 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="windowBackground">#1a1a1a</color>
+    <color name="windowBackground">#080808</color>
     <color name="grey">#bfbfbf</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="linkBlue">#005ce6</color>
     <color name="buttonBlue">#3333cc</color>
+    <color name="darkGrey">#161616</color>
 </resources>

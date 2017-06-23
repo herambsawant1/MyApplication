@@ -23,7 +23,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_centerVertical="true"
                     android:id="@+id/account_backArrow_images"
-                    android:src="@drawable/ic_back_icon"/>
+                    android:src="@drawable/ic_back_arrow"/>
 
                 <TextView
                     android:layout_toRightOf="@+id/account_backArrow_images"
@@ -32,7 +32,7 @@
                     android:layout_centerVertical="true"
                     android:text="Gallery"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="5dp"
                     android:id="@+id/profileName"/>
             </RelativeLayout>

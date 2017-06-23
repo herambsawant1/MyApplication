@@ -20,25 +20,26 @@
             <include layout="@layout/snippet_top_profile" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/profileInformation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/accountSettings">
 
-            <include layout="@layout/snippet_profile_info"/>
+            <include layout="@layout/snippet_profile_info" />
 
         </RelativeLayout>
 
         <!-- bottom navigation -->
-        <include layout="@layout/layout_bottom_navigation"/>
+        <include layout="@layout/layout_bottom_navigation" />
 
         <ProgressBar
+            android:id="@+id/profileProgressBar"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/profileProgressBar"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"/>
+            android:layout_marginTop="100dp" />
     </RelativeLayout>
 
 

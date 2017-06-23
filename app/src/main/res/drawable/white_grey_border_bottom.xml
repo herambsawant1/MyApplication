@@ -10,10 +10,10 @@
         <shape
             android:shape="rectangle">
             <stroke
-                android:width="1dp"
-                android:color="@color/grey"/>
+                android:width=".5dp"
+                android:color="@color/black"/>
             <solid
-                android:color="@color/white"/>
+                android:color="@color/windowBackground"/>
         </shape>
     </item>
 </layer-list>

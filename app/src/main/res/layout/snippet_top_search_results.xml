@@ -29,7 +29,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="Search"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_marginLeft="15dp"
                     android:id="@+id/searchHeading"/>
             </RelativeLayout>
