@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ApplicationOutline</string>
+    <string name="edit_profile_fragment">Edit Profile</string>
+    <string name="sign_out_fragment">Sign Out</string>
+    <array name="location">
+        <item>Calgary</item>
+        <item>Edmonton</item>
+        <item>Saskatchewan</item>
+        <item>Vancouver</item>
+    </array>
+    <array name="service">
+        <item>Hair</item>
+        <item>Makeup</item>
+        <item>Photography</item>
+        <item>Modeling</item>
+    </array>
+</resources>
