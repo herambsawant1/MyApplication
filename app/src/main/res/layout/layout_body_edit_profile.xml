@@ -53,9 +53,11 @@
             <EditText
                 android:id="@+id/nameText"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:background="@drawable/grey_underline"
+                android:textColor="@color/textGrey"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -66,23 +68,27 @@
                 android:id="@+id/serviceSpinner"
                 android:layout_width="245dp"
                 android:layout_height="37dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/darkGrey"
                 android:entries="@array/service"
+                android:popupBackground="@color/darkGrey"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/nameText"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+                app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
             <EditText
                 android:id="@+id/bioText"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:hint=""
+                android:background="@drawable/grey_underline"
+                android:textColor="@color/textGrey"
                 android:inputType="textMultiLine"
                 android:lines="4"
                 android:minLines="1"
@@ -98,15 +104,17 @@
                 android:id="@+id/locationSpinner"
                 android:layout_width="245dp"
                 android:layout_height="37dp"
-                android:entries="@array/location"
+                android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginRight="8dp"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/serviceSpinner"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp" />
+                android:layout_marginTop="30dp"
+                android:background="@color/darkGrey"
+                android:entries="@array/location"
+                android:popupBackground="@color/darkGrey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/serviceSpinner" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -145,7 +153,6 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/grey_underline"
                 android:text="PRIVATE INFORMATION"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -173,7 +180,7 @@
             <EditText
                 android:id="@+id/textView8"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -181,20 +188,44 @@
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginRight="8dp"
+                android:background="@drawable/grey_underline"
+                android:textColor="@color/textGrey"
                 app:layout_constraintRight_toRightOf="parent" />
 
             <EditText
                 android:id="@+id/textView9"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
                 android:layout_marginRight="8dp"
+                android:background="@drawable/grey_underline"
+                android:textColor="@color/textGrey"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                android:textColor="@color/black"
+                android:text="SAVE"
+                android:background="@drawable/button_rounded_black"
+                android:gravity="center"
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/editeProfileSaveButton"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/editeProfileSaveButton"/>
 
             <TextView
                 android:id="@+id/textView10"
@@ -208,7 +239,6 @@
                 android:layout_marginRight="8dp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintHorizontal_bias="0.127"
-                android:paddingBottom="20dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
         </android.support.constraint.ConstraintLayout>

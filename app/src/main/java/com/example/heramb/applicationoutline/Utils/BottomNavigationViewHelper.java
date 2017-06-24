@@ -17,6 +17,9 @@ public class BottomNavigationViewHelper {
 
     private static final String TAG = "BottomNavigationViewHel";
 
+    static boolean createdSearch = false;
+    static boolean createdProfile = false;
+
     public static void setupBottomNavigationView(BottomNavigationViewEx bottomNavigationViewEx){
         Log.d(TAG, "setupBottomNavigationView: Setting up BottomNavigationView");
         bottomNavigationViewEx.enableAnimation(false);
@@ -33,17 +36,25 @@ public class BottomNavigationViewHelper {
 
                     case R.id.ic_interactions:
                         Intent intent1 = new Intent(context, InteractionsActivity.class);//ACTIVITY_NUM = 0
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         context.startActivity(intent1);
                         break;
 
                     case R.id.ic_search:
                         Intent intent2  = new Intent(context, SearchActivity.class);//ACTIVITY_NUM = 1
+                        intent2.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent2.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        createdSearch = true;
                         context.startActivity(intent2);
                         break;
 
                     case R.id.ic_profile:
-                        Intent intent5 = new Intent(context, ProfileActivity.class);//ACTIVITY_NUM = 4
-                        context.startActivity(intent5);
+                        Intent intent3 = new Intent(context, ProfileActivity.class);//ACTIVITY_NUM = 4
+                        intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent3.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        createdProfile = true;
+                        context.startActivity(intent3);
                         break;
                 }
 

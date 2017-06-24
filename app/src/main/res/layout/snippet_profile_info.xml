@@ -7,8 +7,8 @@
         android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <!-- ********************Middle Section*************************** -->
 
@@ -22,15 +22,14 @@
                 android:id="@+id/linLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="100">
+                android:orientation="horizontal">
 
 
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="25dp"
-                    android:layout_weight="40">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center_vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/profile_image"
@@ -38,17 +37,14 @@
                         android:layout_height="100dp"
                         android:layout_centerVertical="true"
                         app:civ_border_color="@color/black"
-                        app:civ_border_width="2dp" />
+                        app:civ_border_width="1.5dp" />
 
 
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_weight="75">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <include layout="@layout/snippet_profile_reviews" />
 
@@ -101,7 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Description: Some random bio about the user, Some random bio about the user, Some random bio about the user, Some random bio about the user, Some random bio about the user"
+                    android:textColor="@color/textGrey"
+                    android:text="Description: Some random bio about the user, Some random bio about the user, Some random bio about the user, Some random bio about the user, Some random bio about the user,Some random bio about the user,Some random bio about the user,Some random bio about the user,Some random bio about the user"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -142,7 +139,7 @@
         <RelativeLayout
             android:id="@+id/relLayout3"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/profileInformation"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
@@ -150,9 +147,10 @@
             <Button
                 android:id="@+id/profileGalleryImages"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_rounded_blue"
+                android:layout_height="40dp"
+                android:background="@drawable/button_rounded_black"
                 android:text="see gallery"
+                android:layout_marginBottom="50dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/black"/>
