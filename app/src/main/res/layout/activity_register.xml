@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.heramb.applicationoutline.Registration.RegisterActivity">
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:fontFamily="sans-serif"
+        android:text="Welcome to SomeAppName"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="55dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="44dp"
+        style="@style/WhiteHint"
+        app:layout_constraintTop_toBottomOf="@+id/textView20">
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="30dp"
+            android:background="@drawable/grey_underline"
+            android:hint="Email"
+            android:id="@+id/registerEmail"
+            android:inputType="textEmailAddress"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="18dp"
+        style="@style/WhiteHint"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" >
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="30dp"
+            android:background="@drawable/grey_underline"
+            android:hint="Enter a password"
+            android:id="@+id/registerPassword"
+            android:inputType="textPassword"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        style="@style/WhiteHint"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="30dp"
+            android:background="@drawable/grey_underline"
+            android:hint="Confirm password"
+            android:id="@+id/registerConfirmPassword"
+            android:inputType="textPassword"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/registerSignUpButton"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/button_rounded_black"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/registerSignInText"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="center"
+        android:text="Already have an account? Log in Here!"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerSignUpButton" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        style="@style/WhiteHint"
+        app:layout_constraintRight_toRightOf="parent">
+        <EditText
+            android:layout_width="240dp"
+            android:layout_height="30dp"
+            android:id="@+id/registerUsername"
+            android:background="@drawable/grey_underline"
+            android:hint="FIrst and Last Name"/>
+    </android.support.design.widget.TextInputLayout>
+    <ProgressBar
+        android:id="@+id/registerProgressBar"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="2dp"
+        android:theme="@style/AppTheme.WhiteAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.472" />
+
+    <TextView
+        android:id="@+id/registerProgressBarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="31dp"
+        android:text="Registering new user...."
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerProgressBar" />
+</android.support.constraint.ConstraintLayout>
