@@ -21,7 +21,9 @@
         <activity android:name=".Search.SearchActivity" />
         <activity android:name=".Profile.ProfileActivity" />
         <activity android:name=".Profile.AccountSettingsActivity" />
-        <activity android:name=".Profile.ProfileImagesActivity"></activity>
+        <activity android:name=".Profile.ProfileImagesActivity" />
+        <activity android:name=".Registration.SignInActivity" />
+        <activity android:name=".Registration.RegisterActivity"></activity>
     </application>
 
 </manifest>

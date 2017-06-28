@@ -18,8 +18,15 @@ tools:context="com.example.heramb.applicationoutline.Interactions.InteractionsAc
         android:layout_height="match_parent"
         android:id="@+id/relLayoutBody">
 
-        <include layout="@layout/layout_body_viewpager"/>
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rounded_black"
+            android:text="Sign Out"
+            android:id="@+id/signOutButton"
+            android:textColor="@color/black"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
