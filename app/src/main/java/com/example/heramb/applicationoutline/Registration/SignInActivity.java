@@ -89,7 +89,7 @@ public class SignInActivity extends AppCompatActivity {
                 String email = emailText.getText().toString();
                 String password = passwordText.getText().toString();
 
-                if((email == "") && (password == "")){
+                if((email.equals("")) || (password.equals(""))){
                     Toast.makeText(mContext, "You must fill out all the fields", Toast.LENGTH_SHORT).show();
                 }else{
                     progressBar.setVisibility(View.VISIBLE);
@@ -118,6 +118,9 @@ public class SignInActivity extends AppCompatActivity {
                                                 Toast.LENGTH_SHORT).show();
                                         progressBar.setVisibility(View.GONE);
                                         progressBarText.setVisibility(View.GONE);
+                                        Intent intent = new Intent(mContext, InteractionsActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     }
 
                                     // ...
@@ -127,11 +130,6 @@ public class SignInActivity extends AppCompatActivity {
 
             }
         });
-        if(mAuth.getCurrentUser() != null){
-            Intent intent = new Intent(this, InteractionsActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
     private void setUpFirebaseAuth(){
         Log.d(TAG, "Setting up firebase authentication");

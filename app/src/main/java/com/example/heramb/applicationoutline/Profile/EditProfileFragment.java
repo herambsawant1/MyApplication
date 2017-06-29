@@ -35,7 +35,7 @@ public class EditProfileFragment extends Fragment {
 
 
         setProfileImage();
-        setUpAvailButtons(view);
+//        setUpAvailButtons(view);
 
         //back arrow for navigating back to "ProfileActivity"
         ImageView backArrow = (ImageView) view.findViewById(R.id.account_backArrow);
@@ -56,30 +56,30 @@ public class EditProfileFragment extends Fragment {
         String imgURL = "www.androidcentral.com/sites/androidcentral.com/files/styles/xlarge/public/article_images/2016/08/ac-lloyd.jpg?itok=bb72IeLf";
         UniversalImageLoader.setImage(imgURL, mProfilePhoto, null, "https://");
     }
-    private void setUpAvailButtons(View view){
-        monday = (Button) view.findViewById(R.id.editProfileMonday);
-        mondaySwitch = false;
-        tuesdaySwitch = false;
-        wednesdaySwitch = false;
-        thursdaySwitch = false;
-        fridaySwitch = false;
-        saturdaySwitch = false;
-        sundaySwitch = false;
-
-        monday.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(!mondaySwitch){
-                    monday.setPressed(true);
-                    mondaySwitch = true;
-                    return true;
-                }
-                else{
-                    monday.setPressed(false);
-                    mondaySwitch = false;
-                    return true;
-                }
-            }
-        });
-    }
+//    private void setUpAvailButtons(View view){
+//        monday = (Button) view.findViewById(R.id.editProfileMonday);
+//        mondaySwitch = false;
+//        tuesdaySwitch = false;
+//        wednesdaySwitch = false;
+//        thursdaySwitch = false;
+//        fridaySwitch = false;
+//        saturdaySwitch = false;
+//        sundaySwitch = false;
+//
+//        monday.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if(!mondaySwitch){
+//                    monday.setPressed(true);
+//                    mondaySwitch = true;
+//                    return true;
+//                }
+//                else{
+//                    monday.setPressed(false);
+//                    mondaySwitch = false;
+//                    return true;
+//                }
+//            }
+//        });
+//    }
 }
