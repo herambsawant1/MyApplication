@@ -23,7 +23,8 @@
         <activity android:name=".Profile.AccountSettingsActivity" />
         <activity android:name=".Profile.ProfileImagesActivity" />
         <activity android:name=".Registration.SignInActivity" />
-        <activity android:name=".Registration.RegisterActivity"></activity>
+        <activity android:name=".Registration.RegisterActivity" />
+        <activity android:name=".Search.SearchListActivity"></activity>
     </application>
 
 </manifest>

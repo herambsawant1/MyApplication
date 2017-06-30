@@ -3,15 +3,15 @@
     <string name="edit_profile_fragment">Edit Profile</string>
     <string name="sign_out_fragment">Sign Out</string>
     <array name="location">
-        <item>Calgary</item>
-        <item>Edmonton</item>
-        <item>Saskatchewan</item>
-        <item>Vancouver</item>
+        <item>calgary</item>
+        <item>edmonton</item>
+        <item>saskatchewan</item>
+        <item>vancouver</item>
     </array>
     <array name="service">
-        <item>Hair</item>
-        <item>Makeup</item>
-        <item>Photography</item>
-        <item>Modeling</item>
+        <item>hair</item>
+        <item>makeup</item>
+        <item>photography</item>
+        <item>modeling</item>
     </array>
 </resources>

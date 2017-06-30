@@ -25,20 +25,21 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-
-
     //Image loader
+    //design import
+    //BottomNavigationViewEx library
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    //design import
     compile 'com.android.support:design:25.3.1'
-    //BottomNavigationViewEx library
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.0'
     compile 'com.google.firebase:firebase-auth:10.0.1'
+    compile 'com.google.firebase:firebase-database:10.0.1'
     testCompile 'junit:junit:4.12'
 }
+
+
 
 
 
