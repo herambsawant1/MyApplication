@@ -31,8 +31,15 @@
             android:id="@+id/searchListProgressBarText"
             android:layout_below="@+id/searchListProgressBar"
             android:text="Loading results..."
-            android:textColor="@color/white"
             android:layout_centerHorizontal="true"/>
+        <TextView
+            android:layout_width="100dp"
+            android:id="@+id/searchListNoResults"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:text="Sorry no users match that description"/>
         <ListView
             android:id="@+id/searchResultList"
             android:layout_width="wrap_content"
