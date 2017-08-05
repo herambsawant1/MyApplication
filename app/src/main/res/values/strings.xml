@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">ApplicationOutline</string>
+    <!-- Fragment names -->
     <string name="edit_profile_fragment">Edit Profile</string>
     <string name="sign_out_fragment">Sign Out</string>
+    <!-- spinner entries -->
     <array name="location">
         <item>calgary</item>
         <item>edmonton</item>
@@ -14,4 +16,16 @@
         <item>photography</item>
         <item>modeling</item>
     </array>
+    <!-- Firebase database fields -->
+    <string name="dbname_users">users</string>
+    <string name="dbname_user_information">user_information</string>
+    <string name="field_displayName">displayName</string>
+    <string name="field_email">email</string>
+    <string name="field_description">description</string>
+    <string name="field_location">location</string>
+    <string name="field_service">service</string>
+    <string name="field_phoneNumber">phoneNumber</string>
+
+    <!-- dialog names -->
+    <string name="confirm_password_dialog">ConfirmPasword</string>
 </resources>

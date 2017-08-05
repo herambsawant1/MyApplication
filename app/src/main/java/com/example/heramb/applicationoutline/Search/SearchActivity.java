@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.heramb.applicationoutline.R;
@@ -18,10 +17,7 @@ import com.example.heramb.applicationoutline.Registration.SignInActivity;
 import com.example.heramb.applicationoutline.Utils.BottomNavigationViewHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-
-import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
     private static final String TAG = "SearchActivity";
@@ -51,8 +47,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setUpWidgets(){
         submit = (Button) findViewById(R.id.searchSubmitButton);
-        location = (Spinner) findViewById(R.id.searchLocationSpinner);
-        service = (Spinner) findViewById(R.id.searchServiceSpinner);
+        location = (Spinner) findViewById(R.id.editLocationSpinner);
+        service = (Spinner) findViewById(R.id.editServiceSpinner);
     }
 
     private void init(){

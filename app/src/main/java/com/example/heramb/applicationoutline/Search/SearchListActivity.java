@@ -7,10 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.heramb.applicationoutline.Profile.ProfileActivity;
 import com.example.heramb.applicationoutline.R;
 import com.example.heramb.applicationoutline.Registration.SignInActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class SearchListActivity extends AppCompatActivity {
@@ -51,6 +55,18 @@ public class SearchListActivity extends AppCompatActivity {
         setUpFirebaseAuth();
         init();
 
+        listViewResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int position,
+                                    long id) {
+                // TODO Auto-generated method stub
+
+                SearchResultItems user = (SearchResultItems) parent.getItemAtPosition(position);
+                Intent intent = new Intent(mContext, ProfileActivity.class);
+                intent.putExtra("UID", user.getUid());
+                startActivity(intent);
+            }
+        });
 
     }
     private void init(){
@@ -104,6 +120,7 @@ public class SearchListActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
 
+        //databaseSearch.orderByChild("rating").startAt(5).endAt(0);
         databaseSearch.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

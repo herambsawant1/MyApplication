@@ -49,4 +49,8 @@ public class SearchResultItems {
     public void setUid(String Uid) {
         this.Uid = Uid;
     }
+
+    public String getUid() {
+        return Uid;
+    }
 }

@@ -60,7 +60,7 @@
             android:layout_height="30dp"
             android:textColor="@color/white"
             android:background="@drawable/grey_underline"
-            android:hint="Enter a password"
+            android:hint="Password"
             android:id="@+id/registerPassword"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
@@ -130,7 +130,7 @@
             android:id="@+id/registerUsername"
             android:textColor="@color/white"
             android:background="@drawable/grey_underline"
-            android:hint="FIrst and Last Name"/>
+            android:hint="Username"/>
     </android.support.design.widget.TextInputLayout>
     <ProgressBar
         android:id="@+id/registerProgressBar"

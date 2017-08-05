@@ -19,7 +19,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:id="@+id/profile_photo"
+                android:id="@+id/profilePhoto"
                 app:civ_border_color="@color/black"
                 app:civ_border_width="2dp"
                 android:layout_centerHorizontal="true"
@@ -37,12 +37,12 @@
                 android:layout_height="wrap_content"
                 android:text="Change Photo"
                 android:id="@+id/changeProfilePhoto"
-                android:layout_below="@+id/profile_photo"
+                android:layout_below="@+id/profilePhoto"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/linkBlue"
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@+id/profile_photo"
+                app:layout_constraintTop_toBottomOf="@+id/profilePhoto"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginRight="8dp"
@@ -51,13 +51,13 @@
                 android:layout_marginEnd="8dp" />
 
             <EditText
-                android:id="@+id/nameText"
+                android:id="@+id/displayNameText"
                 android:layout_width="250dp"
                 android:layout_height="35dp"
+                android:textColor="@color/white"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/grey_underline"
-                android:textColor="@color/textGrey"
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -65,7 +65,7 @@
                 app:layout_constraintRight_toRightOf="parent" />
 
             <Spinner
-                android:id="@+id/searchServiceSpinner"
+                android:id="@+id/editServiceSpinner"
                 android:layout_width="245dp"
                 android:layout_height="37dp"
                 android:layout_marginEnd="8dp"
@@ -78,7 +78,7 @@
                 android:popupBackground="@color/darkGrey"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameText" />
+                app:layout_constraintTop_toBottomOf="@+id/displayNameText" />
 
             <EditText
                 android:id="@+id/bioText"
@@ -86,9 +86,9 @@
                 android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
+                android:textColor="@color/white"
                 android:hint=""
                 android:background="@drawable/grey_underline"
-                android:textColor="@color/textGrey"
                 android:inputType="textMultiLine"
                 android:lines="4"
                 android:minLines="1"
@@ -123,7 +123,7 @@
             </LinearLayout>
 
             <Spinner
-                android:id="@+id/searchLocationSpinner"
+                android:id="@+id/editLocationSpinner"
                 android:layout_width="245dp"
                 android:layout_height="37dp"
                 android:layout_marginEnd="8dp"
@@ -136,13 +136,13 @@
                 android:popupBackground="@color/darkGrey"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchServiceSpinner" />
+                app:layout_constraintTop_toBottomOf="@+id/editServiceSpinner" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username"
+                android:text="Display Name"
                 android:layout_marginTop="40dp"
                 app:layout_constraintTop_toBottomOf="@+id/changeProfilePhoto"
                 android:layout_marginLeft="8dp"
@@ -164,7 +164,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintHorizontal_bias="0.094"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/searchLocationSpinner"
+                app:layout_constraintTop_toBottomOf="@+id/editLocationSpinner"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp" />
 
@@ -201,29 +201,29 @@
                 android:layout_marginEnd="8dp" />
 
             <EditText
-                android:id="@+id/textView8"
+                android:id="@+id/editUserEmail"
                 android:layout_width="250dp"
                 android:layout_height="35dp"
                 app:layout_constraintTop_toBottomOf="@+id/textView7"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
+                android:textColor="@color/white"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/grey_underline"
-                android:textColor="@color/textGrey"
                 app:layout_constraintRight_toRightOf="parent" />
 
             <EditText
-                android:id="@+id/textView9"
+                android:id="@+id/editUserPhoneNumber"
                 android:layout_width="250dp"
                 android:layout_height="35dp"
                 app:layout_constraintTop_toBottomOf="@+id/textView10"
                 android:layout_marginRight="8dp"
                 android:background="@drawable/grey_underline"
-                android:textColor="@color/textGrey"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginStart="8dp"
+                android:textColor="@color/white"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent" />
@@ -232,7 +232,7 @@
                 android:layout_width="100dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/editUserPhoneNumber"
                 android:textColor="@color/black"
                 android:text="SAVE"
                 android:background="@drawable/button_rounded_black"
@@ -257,7 +257,7 @@
                 android:layout_height="wrap_content"
                 android:text="Phone Number"
                 android:layout_marginTop="30dp"
-                app:layout_constraintTop_toBottomOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/editUserEmail"
                 android:layout_marginLeft="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginRight="8dp"
