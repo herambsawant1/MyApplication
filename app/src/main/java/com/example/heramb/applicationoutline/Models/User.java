@@ -1,4 +1,4 @@
-package com.example.heramb.applicationoutline.models;
+package com.example.heramb.applicationoutline.Models;
 
 /**
  * Created by heram on 7/22/2017.

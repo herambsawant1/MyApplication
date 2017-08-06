@@ -28,4 +28,8 @@
 
     <!-- dialog names -->
     <string name="confirm_password_dialog">ConfirmPasword</string>
+
+    <!-- sharing images tabs -->
+    <string name="gallery">GALLERY</string>
+    <string name="camera">CAMERA</string>
 </resources>

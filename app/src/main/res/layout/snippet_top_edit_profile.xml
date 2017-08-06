@@ -16,7 +16,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/account_backArrow"
+                    android:id="@+id/signOut_backArrow"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/account_backArrow"
+                    android:layout_toRightOf="@+id/signOut_backArrow"
                     android:text="Edit Profile"
                     android:textColor="@color/white"
                     android:textSize="20sp" />

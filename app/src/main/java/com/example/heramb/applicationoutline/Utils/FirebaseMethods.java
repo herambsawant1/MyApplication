@@ -6,9 +6,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.heramb.applicationoutline.R;
-import com.example.heramb.applicationoutline.models.User;
-import com.example.heramb.applicationoutline.models.UserCombinedInfo;
-import com.example.heramb.applicationoutline.models.UserInformation;
+import com.example.heramb.applicationoutline.Models.User;
+import com.example.heramb.applicationoutline.Models.UserCombinedInfo;
+import com.example.heramb.applicationoutline.Models.UserInformation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

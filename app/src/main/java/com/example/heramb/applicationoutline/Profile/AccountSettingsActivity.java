@@ -42,7 +42,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         setupSettingsList();
 
         //setup the backarrow for navigating back to "ProfileActivity"
-        ImageView backArrow = (ImageView) findViewById(R.id.account_backArrow);
+        ImageView backArrow = (ImageView) findViewById(R.id.signOut_backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -16,37 +16,26 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.heramb.applicationoutline.Dialogs.ConfirmPassword;
 import com.example.heramb.applicationoutline.R;
 import com.example.heramb.applicationoutline.Utils.FirebaseMethods;
-import com.example.heramb.applicationoutline.Utils.UniversalImageLoader;
-import com.example.heramb.applicationoutline.models.User;
-import com.example.heramb.applicationoutline.models.UserCombinedInfo;
-import com.example.heramb.applicationoutline.models.UserInformation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
+import com.example.heramb.applicationoutline.Models.User;
+import com.example.heramb.applicationoutline.Models.UserCombinedInfo;
+import com.example.heramb.applicationoutline.Models.UserInformation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.ProviderQueryResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
-
-public class EditProfileFragment extends Fragment implements
-        ConfirmPassword.OnConfirmPasswordListener{
+public class EditProfileFragment extends Fragment {
 
     private static final String TAG = "EditProfileFragment";
 
     private ImageView mProfilePhoto;
-    private EditText editDisplayName, editBio, editEmail, editPhoneNumber;
+    private EditText editDisplayName, editBio, editPhoneNumber;
     private TextView editPhoto;
     private Spinner editLocation, editService;
 
@@ -75,7 +64,6 @@ public class EditProfileFragment extends Fragment implements
     private void init(View view){
         editDisplayName = (EditText) view.findViewById(R.id.displayNameText);
         editBio = (EditText) view.findViewById(R.id.bioText);
-        editEmail = (EditText) view.findViewById(R.id.editUserEmail);
         editPhoneNumber = (EditText) view.findViewById(R.id.editUserPhoneNumber);
         editPhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
         editLocation = (Spinner) view.findViewById(R.id.editLocationSpinner);
@@ -84,7 +72,7 @@ public class EditProfileFragment extends Fragment implements
     }
     private void setUpButtons(View view){
         //back arrow for navigating back to "ProfileActivity"
-        ImageView backArrow = (ImageView) view.findViewById(R.id.account_backArrow);
+        ImageView backArrow = (ImageView) view.findViewById(R.id.signOut_backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,16 +105,10 @@ public class EditProfileFragment extends Fragment implements
     private void saveProfileChanges(){
         final String displayName = editDisplayName.getText().toString();
         final String description = editBio.getText().toString();
-        final String email = editEmail.getText().toString();
         final long phoneNumber = Long.parseLong(editPhoneNumber.getText().toString());
         final String location = editLocation.getSelectedItem().toString();
         final String service = editService.getSelectedItem().toString();
 
-        if (!userCombinedInfo.getUser().getEmail().equals(email)){
-            ConfirmPassword dialog = new ConfirmPassword();
-            dialog.show(getFragmentManager(), getString(R.string.confirm_password_dialog));
-            dialog.setTargetFragment(EditProfileFragment.this, 1);
-        }
         if (!(userCombinedInfo.getUser().getPhoneNumber() == phoneNumber)){
             mFirebaseMethods.updateUserInformation(null, null, null, null, phoneNumber);
         }
@@ -147,35 +129,6 @@ public class EditProfileFragment extends Fragment implements
         Toast.makeText(getActivity(), "Your profile has been updated", Toast.LENGTH_SHORT).show();
     }
 
-    private void checkIfEmailExists(final String email){
-        Log.d(TAG, "checkIfEmailExists: Checking if  " + email + " already exists.");
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        Query query = reference
-                .child(getString(R.string.dbname_users))
-                .orderByChild(getString(R.string.field_email))
-                .equalTo(email);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.exists()){
-                    //add the username
-                    mFirebaseMethods.updateEmail(email);
-                    Toast.makeText(getActivity(), "saved username.", Toast.LENGTH_SHORT).show();
-                }
-                for(DataSnapshot singleSnapshot: dataSnapshot.getChildren()){
-                    if (singleSnapshot.exists()){
-                        Log.d(TAG, "checkIfEmailExists: FOUND A MATCH: " + singleSnapshot.getValue(User.class).getUsername());
-                        Toast.makeText(getActivity(), "That email already exists.", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
     private void populateWidgets(UserCombinedInfo userCombinedInformation){
 
         userCombinedInfo = userCombinedInformation;
@@ -189,7 +142,6 @@ public class EditProfileFragment extends Fragment implements
         //editLocation.setText(information.getLocation());
         //editService.setText(information.getService());
         editBio.setText(information.getDescription());
-        editEmail.setText(user.getEmail());
         editPhoneNumber.setText(String.valueOf(user.getPhoneNumber()));
     }
 
@@ -247,67 +199,4 @@ public class EditProfileFragment extends Fragment implements
         }
     }
 
-    @Override
-    public void onConfirmPassword(String password) {
-        Log.d(TAG, "onConfirmPassword: got the password: " + password);
-
-        // Get auth credentials from the user for re-authentication. The example below shows
-        // email and password credentials but there are multiple possible providers,
-        // such as GoogleAuthProvider or FacebookAuthProvider.
-        AuthCredential credential = EmailAuthProvider
-                .getCredential(mAuth.getCurrentUser().getEmail(), password);
-
-        ///////////////////// Prompt the user to re-provide their sign-in credentials
-        mAuth.getCurrentUser().reauthenticate(credential)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Log.d(TAG, "User re-authenticated.");
-
-                            ///////////////////////check to see if the email is not already present in the database
-                            mAuth.fetchProvidersForEmail(editEmail.getText().toString()).addOnCompleteListener(new OnCompleteListener<ProviderQueryResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<ProviderQueryResult> task) {
-                                    if(task.isSuccessful()){
-                                        try{
-                                            if(task.getResult().getProviders().size() == 1){
-                                                Log.d(TAG, "onComplete: that email is already in use.");
-                                                Toast.makeText(getActivity(), "That email is already in use", Toast.LENGTH_SHORT).show();
-                                            }
-                                            else{
-                                                Log.d(TAG, "onComplete: That email is available.");
-
-                                                //////////////////////the email is available so update it
-                                                mAuth.getCurrentUser().updateEmail(editEmail.getText().toString())
-                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if (task.isSuccessful()) {
-                                                                    Log.d(TAG, "User email address updated.");
-                                                                    Toast.makeText(getActivity(), "email updated", Toast.LENGTH_SHORT).show();
-                                                                    mFirebaseMethods.updateEmail(editEmail.getText().toString());
-                                                                }
-                                                            }
-                                                        });
-                                            }
-                                        }catch (NullPointerException e){
-                                            Log.e(TAG, "onComplete: NullPointerException: "  +e.getMessage() );
-                                        }
-                                    }
-                                }
-                            });
-
-
-
-
-
-                        }else{
-                            Log.d(TAG, "onComplete: re-authentication failed.");
-                            Toast.makeText(getActivity(), "The password entered was incorrect", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-                });
-    }
 }

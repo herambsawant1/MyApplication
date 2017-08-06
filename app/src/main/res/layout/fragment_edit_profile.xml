@@ -23,7 +23,13 @@
             android:id="@+id/profileInformation">
 
 
-            <include layout="@layout/layout_body_edit_profile"/>
+            <include layout="@layout/layout_body_edit_profile"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="28dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="169dp" />
 
         </RelativeLayout>
 

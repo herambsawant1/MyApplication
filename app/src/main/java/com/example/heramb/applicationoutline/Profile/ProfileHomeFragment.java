@@ -1,6 +1,5 @@
 package com.example.heramb.applicationoutline.Profile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,13 +20,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.heramb.applicationoutline.R;
-import com.example.heramb.applicationoutline.Registration.SignInActivity;
 import com.example.heramb.applicationoutline.Utils.BottomNavigationViewHelper;
 import com.example.heramb.applicationoutline.Utils.FirebaseMethods;
 import com.example.heramb.applicationoutline.Utils.UniversalImageLoader;
-import com.example.heramb.applicationoutline.models.User;
-import com.example.heramb.applicationoutline.models.UserCombinedInfo;
-import com.example.heramb.applicationoutline.models.UserInformation;
+import com.example.heramb.applicationoutline.Models.UserCombinedInfo;
+import com.example.heramb.applicationoutline.Models.UserInformation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,8 +33,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-
-import org.w3c.dom.Text;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -97,6 +92,15 @@ public class ProfileHomeFragment extends Fragment {
         bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
         serviceRatingCount = (TextView) view.findViewById(R.id.profileInfoServiceRatingCount);
         mFirebaseMethods = new FirebaseMethods(getActivity());
+
+        gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating to gallery images.");
+                Intent intent = new Intent(mContext, ProfileImagesActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void populateWidgets(UserCombinedInfo userCombinedInfo){
