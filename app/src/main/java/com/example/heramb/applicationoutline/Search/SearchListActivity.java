@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.heramb.applicationoutline.Models.UserInformation;
 import com.example.heramb.applicationoutline.Profile.ProfileActivity;
 import com.example.heramb.applicationoutline.R;
 import com.example.heramb.applicationoutline.Registration.SignInActivity;
@@ -44,7 +45,7 @@ public class SearchListActivity extends AppCompatActivity {
     private DatabaseReference databaseSearch;
 
     private ListView listViewResults;
-    private List<SearchResultItems> resultList;
+    private List<UserInformation> resultList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +85,8 @@ public class SearchListActivity extends AppCompatActivity {
             location = extras.getString("location");
             Log.d(TAG, "Service:" + service + "Location:" + location);
         }
-        databaseSearch = FirebaseDatabase.getInstance().getReference(location).child(service);
+        databaseSearch = FirebaseDatabase.getInstance().getReference(getString(R.string.dbname_user_information));
+        Log.d(TAG, databaseSearch.toString());
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Firebase~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -120,13 +122,12 @@ public class SearchListActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
 
-        //databaseSearch.orderByChild("rating").startAt(5).endAt(0);
         databaseSearch.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 resultList.clear();
                 for (DataSnapshot providerSnapshot : dataSnapshot.getChildren()) {
-                    SearchResultItems results = providerSnapshot.getValue(SearchResultItems.class);
+                    UserInformation results = providerSnapshot.getValue(UserInformation.class);
                     resultList.add(results);
                 }
                 progressBar.setVisibility(View.GONE);

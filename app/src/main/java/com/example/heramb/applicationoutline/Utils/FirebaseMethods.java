@@ -9,6 +9,7 @@ import com.example.heramb.applicationoutline.R;
 import com.example.heramb.applicationoutline.Models.User;
 import com.example.heramb.applicationoutline.Models.UserCombinedInfo;
 import com.example.heramb.applicationoutline.Models.UserInformation;
+import com.example.heramb.applicationoutline.Search.SearchResultItems;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -16,6 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by heram on 6/28/2017.
@@ -81,7 +85,7 @@ public class FirebaseMethods {
         myRef.child("users").child(userID).setValue(user);
 
         UserInformation info = new UserInformation(
-                description, StringManipulation.condenseUsername(username), profile_photo, username, "", "", 0, 0, 0
+                description, username, profile_photo, StringManipulation.condenseUsername(username), "", "", 0, 0, 0
         );
 
         myRef.child(mContext.getString(R.string.dbname_user_information))
@@ -134,9 +138,25 @@ public class FirebaseMethods {
         }
     }
 
+
+    /**
+     * Retrieves a list of users which match search results
+     * @param dataSnapshot
+     * @return
+     */
+    public ArrayList searchUsers(String location, String service, DataSnapshot dataSnapshot){
+        Log.d(TAG, "Searching users matching location: " + location + " and service: " + service + " in the database");
+        ArrayList<UserInformation> resultList = new ArrayList<>();
+
+        for (DataSnapshot providerSnapshot : dataSnapshot.getChildren()) {
+            UserInformation results = providerSnapshot.getValue(UserInformation.class);
+            resultList.add(results);
+        }
+
+        return resultList;
+    }
     /**
      * Retrieves the account settings for teh user currently logged in
-     * Database: user_acount_Settings node
      * @param dataSnapshot
      * @return
      */

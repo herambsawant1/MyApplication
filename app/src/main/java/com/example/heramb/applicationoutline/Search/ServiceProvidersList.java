@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.heramb.applicationoutline.Models.UserInformation;
 import com.example.heramb.applicationoutline.R;
 
 import java.util.List;
@@ -18,15 +19,15 @@ import java.util.List;
  * Created by heram on 6/29/2017.
  */
 
-public class ServiceProvidersList extends ArrayAdapter<SearchResultItems> {
+public class ServiceProvidersList extends ArrayAdapter<UserInformation> {
 
     private Activity context;
-    private List<SearchResultItems> resultList;
+    private List<UserInformation> resultList;
 
-    public ServiceProvidersList(Activity context, List<SearchResultItems> ServiceProviderList){
-        super(context,R.layout.row_layout_search, ServiceProviderList);
+    public ServiceProvidersList(Activity context, List<UserInformation> userInformation){
+        super(context,R.layout.row_layout_search, userInformation);
         this.context = context;
-        this.resultList = ServiceProviderList;
+        this.resultList = userInformation;
     }
 
     @NonNull
@@ -41,12 +42,13 @@ public class ServiceProvidersList extends ArrayAdapter<SearchResultItems> {
         TextView textViewLocation = (TextView) listViewItem.findViewById(R.id.rowLocation);
         RatingBar ratingViewRating = (RatingBar) listViewItem.findViewById(R.id.rowReviewRating);
 
-        SearchResultItems results = resultList.get(position);
+        UserInformation results = resultList.get(position);
 
-        textViewName.setText(results.getUsername());
+        textViewName.setText(results.getDisplayName());
         textViewService.setText(results.getService());
         textViewLocation.setText(results.getLocation());
-        ratingViewRating.setRating(results.getRating());
+        Long rating = ((results.getServiceRating()+results.getExperienceRating())/2);
+        ratingViewRating.setRating(rating);
 
         return listViewItem;
     }
