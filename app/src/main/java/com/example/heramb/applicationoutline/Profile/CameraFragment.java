@@ -30,7 +30,7 @@ public class CameraFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_camera, container, false);
+        View view = inflater.inflate(R.layout.fragment_camera, container, false);
         Log.d(TAG, "onCreateView: started.");
 
         Button btnLaunchCamera = (Button) view.findViewById(R.id.btnLaunchCamera);

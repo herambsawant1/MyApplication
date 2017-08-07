@@ -55,18 +55,18 @@ public class SearchListActivity extends AppCompatActivity {
         setUpFirebaseAuth();
         init();
 
-        listViewResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View arg1, int position,
-                                    long id) {
-                // TODO Auto-generated method stub
-
-                SearchResultItems user = (SearchResultItems) parent.getItemAtPosition(position);
-                Intent intent = new Intent(mContext, ProfileActivity.class);
-                intent.putExtra("UID", user.getUid());
-                startActivity(intent);
-            }
-        });
+//        listViewResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View arg1, int position,
+//                                    long id) {
+//                // TODO Auto-generated method stub
+//
+//                SearchResultItems user = (SearchResultItems) parent.getItemAtPosition(position);
+//                Intent intent = new Intent(mContext, ProfileActivity.class);
+//                intent.putExtra("UID", user.getUid());
+//                startActivity(intent);
+//            }
+//        });
 
     }
     private void init(){
