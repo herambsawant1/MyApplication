@@ -9,7 +9,6 @@ import com.example.heramb.applicationoutline.R;
 import com.example.heramb.applicationoutline.Models.User;
 import com.example.heramb.applicationoutline.Models.UserCombinedInfo;
 import com.example.heramb.applicationoutline.Models.UserInformation;
-import com.example.heramb.applicationoutline.Search.SearchResultItems;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by heram on 6/28/2017.
@@ -252,6 +250,112 @@ public class FirebaseMethods {
                 );
                 user.setPhoneNumber(
                         ds.child(userID)
+                                .getValue(User.class)
+                                .getPhoneNumber()
+                );
+
+                Log.d(TAG, "getUserAccountSettings: retrieved users information: " + user.toString());
+            }
+        }
+        return new UserCombinedInfo(user, information);
+    }
+    /**
+     * Retrieves the account settings for teh user currently logged in
+     * @param dataSnapshot
+     * @return
+     */
+    public UserCombinedInfo getServiceProviderUserAccountSettings(DataSnapshot dataSnapshot, String UID){
+        Log.d(TAG, "getUserAccountInformation: retrieving user account settings from firebase.");
+
+Log.d(TAG, "+++++++++++++++++" + UID);
+        UserInformation information  = new UserInformation();
+        User user = new User();
+
+        for(DataSnapshot ds: dataSnapshot.getChildren()){
+
+            // user_account_settings node
+            if(ds.getKey().equals(mContext.getString(R.string.dbname_user_information))){
+                Log.d(TAG, "getUserAccountInformation: datasnapshot: " + ds);
+
+                try{
+                    information.setDisplayName(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getDisplayName()
+                    );
+                    information.setUsername(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getUsername()
+                    );
+                    information.setDescription(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getDescription()
+                    );
+                    information.setProfilePhoto(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getProfilePhoto()
+                    );
+                    information.setExperienceRating(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getExperienceRating()
+                    );
+                    information.setServiceRating(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getServiceRating()
+                    );
+                    information.setServiceRatingCount(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getServiceRatingCount()
+                    );
+                    information.setDescription(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getDescription()
+                    );
+                    information.setService(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getService()
+                    );
+                    information.setLocation(
+                            ds.child(UID)
+                                    .getValue(UserInformation.class)
+                                    .getLocation()
+                    );
+
+
+                    Log.d(TAG, "getUserAccountInformation: retrieved user_account_information: " + information.toString());
+                }catch (NullPointerException e){
+                    Log.e(TAG, "getUserAccountInformation: NullPointerException: " + e.getMessage() );
+                }
+            }
+            // users node
+            if(ds.getKey().equals(mContext.getString(R.string.dbname_users))) {
+                Log.d(TAG, "getUserAccountInformation: datasnapshot: " + ds);
+
+                user.setUsername(
+                        ds.child(UID)
+                                .getValue(User.class)
+                                .getUsername()
+                );
+                user.setEmail(
+                        ds.child(UID)
+                                .getValue(User.class)
+                                .getEmail()
+                );
+                user.setUser_id(
+                        ds.child(UID)
+                                .getValue(User.class)
+                                .getUser_id()
+                );
+                user.setPhoneNumber(
+                        ds.child(UID)
                                 .getValue(User.class)
                                 .getPhoneNumber()
                 );

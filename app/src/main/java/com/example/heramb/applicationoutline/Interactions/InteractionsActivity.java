@@ -27,7 +27,6 @@ public class InteractionsActivity extends AppCompatActivity {
     private static final int ACTIVITY_NUM = 0;
 
     private Context mContext = InteractionsActivity.this;
-    private Button signOut;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -37,21 +36,11 @@ public class InteractionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interactions);
         Log.d(TAG, "onCreate: starting.");
-        signOut = (Button) findViewById(R.id.signOutButton);
 
         initImageLoader();
         setupBottomNavigationView();
         setUpFirebaseAuth();
 
-        signOut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Log.d(TAG, "Navigating to register activity");
-                FirebaseAuth.getInstance().signOut(); //End user session
-                startActivity(new Intent(mContext, SignInActivity.class)); //Go back to home page
-                finish();
-            }
-        });
     }
 
     private void initImageLoader(){

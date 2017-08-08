@@ -1,32 +1,33 @@
-package com.example.heramb.applicationoutline.Profile;
+package com.example.heramb.applicationoutline.Search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.heramb.applicationoutline.Models.User;
+import com.example.heramb.applicationoutline.Models.UserCombinedInfo;
+import com.example.heramb.applicationoutline.Models.UserInformation;
+import com.example.heramb.applicationoutline.Profile.AccountSettingsActivity;
+import com.example.heramb.applicationoutline.Profile.ProfileActivity;
+import com.example.heramb.applicationoutline.Profile.ProfileImagesActivity;
 import com.example.heramb.applicationoutline.R;
 import com.example.heramb.applicationoutline.Utils.BottomNavigationViewHelper;
 import com.example.heramb.applicationoutline.Utils.FirebaseMethods;
 import com.example.heramb.applicationoutline.Utils.UniversalImageLoader;
-import com.example.heramb.applicationoutline.Models.UserCombinedInfo;
-import com.example.heramb.applicationoutline.Models.UserInformation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,22 +40,20 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by heram on 8/2/2017.
+ * Created by heram on 8/7/2017.
  */
 
-public class ProfileHomeFragment extends Fragment {
-
-    private static final String TAG = "ProfileHomeFragment";
-    private static final int ACTIVITY_NUM = 2;
+public class SearchProfileActivity extends AppCompatActivity {
+    private static final String TAG = "SearchProfileActivity";
 
     private TextView profileUserName, profileName, profileLocation, profileAvail, profileService, profileBio, serviceRatingCount;
     private RatingBar serviceRating, experienceRating;
     private ProgressBar progressBar;
+    private ImageView backImage;
     private CircleImageView profilePhoto;
     private Button mail, request, gallery;
     private Toolbar toolbar;
-    private ImageView options;
-    private BottomNavigationViewEx bottomNavigationView;
+    private String userID;
     private Context mContext;
     private String userEmail;
 
@@ -65,46 +64,57 @@ public class ProfileHomeFragment extends Fragment {
     private DatabaseReference myRef;
     private FirebaseMethods mFirebaseMethods;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstance){
-        View view = inflater.inflate(R.layout.fragment_profile_home, container, false);
-        setupWidgets(view);
-        mContext = getActivity();
-        setupBottomNavigationView();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_service_provider_profile);
+        mContext = SearchProfileActivity.this;
+        setupWidgets();
         setupToolbar();
         setUpFirebaseAuth();
-        return view;
+
     }
-    private void setupWidgets(View view){
-        profileUserName = (TextView) view.findViewById(R.id.profileName);
-        profileName = (TextView) view.findViewById(R.id.profileInfoName);
-        profileLocation = (TextView) view.findViewById(R.id.profileInfoLocation);
-        profileAvail = (TextView) view.findViewById(R.id.profileInfoAvail);
-        profileService = (TextView) view.findViewById(R.id.profileInfoService);
-        profileBio = (TextView) view.findViewById(R.id.profileInfoDescription);
-        serviceRating = (RatingBar) view.findViewById(R.id.profileInfoServiceRating);
-        experienceRating = (RatingBar) view.findViewById(R.id.profileInfoExperienceRating);
-        progressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
-        profilePhoto = (CircleImageView) view.findViewById(R.id.profileImage);
-        mail = (Button) view.findViewById(R.id.profileInfoMail);
-        request = (Button) view.findViewById(R.id.profileInfoRequest);
-        gallery = (Button) view.findViewById(R.id.profileGalleryImages);
-        options = (ImageView) view.findViewById(R.id.profileMenu);
-        toolbar = (Toolbar) view.findViewById(R.id.profileToolBar);
-        bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
-        serviceRatingCount = (TextView) view.findViewById(R.id.profileInfoServiceRatingCount);
-        mFirebaseMethods = new FirebaseMethods(getActivity());
+
+    private void setupWidgets(){
+        profileUserName = (TextView) findViewById(R.id.profileName);
+        profileName = (TextView) findViewById(R.id.profileInfoName);
+        profileLocation = (TextView) findViewById(R.id.profileInfoLocation);
+        profileAvail = (TextView) findViewById(R.id.profileInfoAvail);
+        profileService = (TextView) findViewById(R.id.profileInfoService);
+        profileBio = (TextView) findViewById(R.id.profileInfoDescription);
+        serviceRating = (RatingBar) findViewById(R.id.profileInfoServiceRating);
+        experienceRating = (RatingBar) findViewById(R.id.profileInfoExperienceRating);
+        progressBar = (ProgressBar) findViewById(R.id.profileProgressBar);
+        profilePhoto = (CircleImageView) findViewById(R.id.profileImage);
+        mail = (Button) findViewById(R.id.profileInfoMail);
+        request = (Button) findViewById(R.id.profileInfoRequest);
+        gallery = (Button) findViewById(R.id.profileGalleryImages);
+        //options = (ImageView) findViewById(R.id.profileMenu);
+        toolbar = (Toolbar) findViewById(R.id.profileToolBar);
+        serviceRatingCount = (TextView) findViewById(R.id.profileInfoServiceRatingCount);
+        backImage = (ImageView) findViewById(R.id.profileBackArrow);
+        mFirebaseMethods = new FirebaseMethods(mContext);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userID = extras.getString("UID");
+        }
 
         gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to gallery images.");
-                Intent intent = new Intent(mContext, ProfileImagesActivity.class);
+                Intent intent = new Intent(mContext, SearchProfileGalleryActivity.class);
                 startActivity(intent);
             }
         });
 
+        backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,26 +156,15 @@ public class ProfileHomeFragment extends Fragment {
     }
     private void setupToolbar(){
 
-        ((ProfileActivity)getActivity()).setSupportActionBar(toolbar);
-        options.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: navigating to account settings.");
-                Intent intent = new Intent(mContext, AccountSettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-    /**
-     * BottomNavigationView setup
-     */
-    private void setupBottomNavigationView(){
-        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationView);
-        BottomNavigationViewHelper.enableNavigation(mContext, bottomNavigationView);
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-        menuItem.setChecked(true);
+//        ((SearchProfileActivity)getApplicationContext()).setSupportActionBar(toolbar);
+//        options.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.d(TAG, "onClick: navigating to account settings.");
+//                Intent intent = new Intent(mContext, AccountSettingsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
 
@@ -196,7 +195,8 @@ public class ProfileHomeFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //retrieve user information from the database
-                populateWidgets(mFirebaseMethods.getUserAccountSettings(dataSnapshot));
+                Log.d(TAG, "+++++++++++++++++" + userID);
+                populateWidgets(mFirebaseMethods.getServiceProviderUserAccountSettings(dataSnapshot, userID));
 
                 //retrieve images for the user in question
 

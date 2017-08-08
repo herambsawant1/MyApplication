@@ -11,26 +11,7 @@ tools:context="com.example.heramb.applicationoutline.Interactions.InteractionsAc
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!-- Middle section (body) -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/relLayoutBody">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_rounded_black"
-            android:text="Sign Out"
-            android:id="@+id/signOutButton"
-            android:textColor="@color/black"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
-
-    </RelativeLayout>
-
-
+    
     <!-- bottom navigation -->
     <include layout="@layout/layout_bottom_navigation"/>
 

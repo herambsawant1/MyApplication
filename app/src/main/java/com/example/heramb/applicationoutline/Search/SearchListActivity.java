@@ -2,12 +2,14 @@ package com.example.heramb.applicationoutline.Search;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,14 +40,15 @@ public class SearchListActivity extends AppCompatActivity {
     private String location, service;
     private Context mContext;
     private ProgressBar progressBar;
-    private TextView progressBarText;
-    private TextView noResults;
+    private TextView progressBarText, noResults;
+    private ImageView backImage;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference databaseSearch;
 
     private ListView listViewResults;
     private List<UserInformation> resultList;
+    private String selectedUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +59,16 @@ public class SearchListActivity extends AppCompatActivity {
         setUpFirebaseAuth();
         init();
 
-//        listViewResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View arg1, int position,
-//                                    long id) {
-//                // TODO Auto-generated method stub
-//
-//                SearchResultItems user = (SearchResultItems) parent.getItemAtPosition(position);
-//                Intent intent = new Intent(mContext, ProfileActivity.class);
-//                intent.putExtra("UID", user.getUid());
-//                startActivity(intent);
-//            }
-//        });
+        listViewResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int position,
+                                    long id) {
+                // TODO Auto-generated method stub
+
+                UserInformation user = (UserInformation) parent.getItemAtPosition(position);
+                getKey(user.getUsername());
+            }
+        });
 
     }
     private void init(){
@@ -76,6 +77,14 @@ public class SearchListActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.searchListProgressBar);
         progressBarText = (TextView) findViewById(R.id.searchListProgressBarText);
         noResults = (TextView) findViewById(R.id.searchListNoResults);
+        backImage = (ImageView) findViewById(R.id.resultsBackArrow);
+
+        backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         noResults.setVisibility(View.GONE);
 
@@ -85,10 +94,37 @@ public class SearchListActivity extends AppCompatActivity {
             location = extras.getString("location");
             Log.d(TAG, "Service:" + service + "Location:" + location);
         }
+
         databaseSearch = FirebaseDatabase.getInstance().getReference(getString(R.string.dbname_user_information));
-        Log.d(TAG, databaseSearch.toString());
     }
 
+    private void getKey(final String userName){
+        String id;
+        databaseSearch.orderByChild(getString(R.string.field_location)).equalTo(location).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot providerSnapshot : dataSnapshot.getChildren()) {
+                    UserInformation results = providerSnapshot.getValue(UserInformation.class);
+                    if(results.getUsername().equals(userName)) {
+                        selectedUserID = providerSnapshot.getKey();
+                        Intent intent = new Intent(mContext, SearchProfileActivity.class);
+                        intent.putExtra("UID", selectedUserID);
+                        startActivity(intent);
+                    }
+                }
+                ServiceProvidersList adaptor = new ServiceProvidersList(SearchListActivity.this, resultList);
+                if(resultList.size() == 0){
+                    noResults.setVisibility(View.VISIBLE);
+                }
+                listViewResults.setAdapter(adaptor);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Firebase~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private void verifyCurrentUser(FirebaseUser user){
         if(user == null){
@@ -122,13 +158,17 @@ public class SearchListActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
 
-        databaseSearch.addValueEventListener(new ValueEventListener() {
+        databaseSearch.orderByChild(getString(R.string.field_location)).equalTo(location).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 resultList.clear();
                 for (DataSnapshot providerSnapshot : dataSnapshot.getChildren()) {
                     UserInformation results = providerSnapshot.getValue(UserInformation.class);
-                    resultList.add(results);
+                    providerSnapshot.getKey();
+                    if(results.getService().equals(service)) {
+                        resultList.add(results);
+                        Log.d(TAG, "Added " + results.getDisplayName() + " to the search results");
+                    }
                 }
                 progressBar.setVisibility(View.GONE);
                 progressBarText.setVisibility(View.GONE);

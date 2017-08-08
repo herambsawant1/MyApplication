@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Context mContext;
 
     private Button registerButton;
-    private EditText emailText;
-    private EditText userNameText;
-    private EditText passwordText;
-    private EditText confirmPasswordText;
+    private EditText emailText, userNameText, passwordText, confirmPasswordText;
     private TextView signInText;
     private ProgressBar progressBar;
     private TextView progressBarText;
@@ -89,6 +87,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+        progressBar.setVisibility(View.GONE);
+        progressBarText.setVisibility(View.GONE);
     }
     private boolean checkInputs(String email, String username, String password, String confirmPassword){
         Log.d(TAG, "checkInputs: checking inputs for null values.");

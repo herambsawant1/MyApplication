@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.heramb.applicationoutline.Interactions.InteractionsActivity">
+
+    <!-- ***********************Top Toolbar***************** -->
+    <RelativeLayout
+        android:id="@+id/accountSettings"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <include layout="@layout/snippet_top__service_provider_profile" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profileInformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accountSettings">
+
+        <include layout="@layout/snippet_service_provider_profile_info" />
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/profileProgressBar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
+
+
+</RelativeLayout>

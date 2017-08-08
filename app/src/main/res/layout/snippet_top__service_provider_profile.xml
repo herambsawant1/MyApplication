@@ -13,7 +13,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/resultsBackArrow"
+                    android:id="@+id/profileBackArrow"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_centerVertical="true"
@@ -21,25 +21,25 @@
                     android:layout_marginRight="10dp"
                     android:src="@drawable/ic_back_arrow" />
 
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_toLeftOf="@+id/searchHeading"
-                    android:layout_marginLeft="10dp"
-                    android:layout_centerVertical="true"
-                    android:id="@+id/profileMenu"
-                    android:src="@drawable/ic_search"/>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="Results"
+                    android:text="heramb.sawant"
+                    android:layout_toRightOf="@id/profileBackArrow"
                     android:textSize="20sp"
                     android:textColor="@color/white"
                     android:layout_marginLeft="15dp"
-                    android:id="@+id/searchHeading"/>
+                    android:id="@+id/profileName"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/profileMenu"
+                    android:src="@drawable/ic_star"/>
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>

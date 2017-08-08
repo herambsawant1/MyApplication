@@ -5,16 +5,33 @@
     <string name="sign_out_fragment">Sign Out</string>
     <!-- spinner entries -->
     <array name="location">
-        <item>calgary</item>
-        <item>edmonton</item>
-        <item>saskatchewan</item>
-        <item>vancouver</item>
+        <item>Airdie</item>
+        <item>Brooks</item>
+        <item>Calgary</item>
+        <item>Camrose</item>
+        <item>Chestermere</item>
+        <item>Cold Lake</item>
+        <item>Drumheller</item>
+        <item>Edmonton</item>
+        <item>Fort McMurray</item>
+        <item>Fort Saskatchewan</item>
+        <item>Grande Prairie</item>
+        <item>Lacombe</item>
+        <item>Leduc</item>
+        <item>Lethbridge</item>
+        <item>Lloydminister</item>
+        <item>Medicine Hat</item>
+        <item>Red Deer</item>
+        <item>Spruce Grove</item>
+        <item>Strathcona</item>
+        <item>St. Albert</item>
+        <item>Wetaskiwin</item>
     </array>
     <array name="service">
-        <item>hair</item>
-        <item>makeup</item>
-        <item>photography</item>
-        <item>modeling</item>
+        <item>Hair</item>
+        <item>Makeup</item>
+        <item>Photography</item>
+        <item>Modeling</item>
     </array>
     <!-- Firebase database fields -->
     <string name="dbname_users">users</string>
