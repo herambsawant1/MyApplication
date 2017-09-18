@@ -64,7 +64,6 @@
                     android:id="@+id/profileInfoName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Heramb Sawant"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -73,7 +72,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Service"
                     android:textSize="20sp" />
 
                 <TextView
@@ -81,7 +79,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="City, Province, Country"
                     android:textSize="16sp" />
 
                 <TextView
@@ -89,7 +86,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="S / M / T / W / T / F / S"
                     android:textSize="16sp" />
 
                 <TextView
@@ -98,7 +94,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/textGrey"
-                    android:text="Description: Some random bio about the user, Some random bio about the user, Some random bio about the user, Some random bio about the user, Some random bio about the user,Some random bio about the user,Some random bio about the user,Some random bio about the user,Some random bio about the user"
                     android:textSize="16sp" />
 
             </LinearLayout>

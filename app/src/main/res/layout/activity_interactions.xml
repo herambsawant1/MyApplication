@@ -11,7 +11,7 @@ tools:context="com.example.heramb.applicationoutline.Interactions.InteractionsAc
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    
+
     <!-- bottom navigation -->
     <include layout="@layout/layout_bottom_navigation"/>
 
